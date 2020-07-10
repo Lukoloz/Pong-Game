@@ -56,6 +56,10 @@ public:
 	{
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );
 	}
+	void PutPixel(float x, float y, Color c)
+	{
+		PutPixel((int)x, (int)y, c);
+	}
 	void PutPixel( int x,int y,Color c );
 	~Graphics();
 private:
