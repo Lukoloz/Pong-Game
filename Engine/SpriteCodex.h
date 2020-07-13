@@ -5,6 +5,7 @@
 class SpriteCodex
 {
 public:
+	static void DrawBall(Graphics& gfx, Vec2& pos, Color c);
 	static void DrawNumber(Graphics& gfx, Vec2& pos, Color c, int n);
 	static void Draw0(Graphics& gfx, Vec2& pos, Color c);
 	static void Draw1(Graphics& gfx, Vec2& pos, Color c);

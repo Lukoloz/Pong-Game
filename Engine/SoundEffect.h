@@ -27,7 +27,7 @@
 class SoundEffect
 {
 public:
-	SoundEffect( const std::initializer_list<std::wstring>& wavFiles,bool soft_fail = false,float freqStdDevFactor = 0.06f )
+	SoundEffect( const std::initializer_list<std::wstring>& wavFiles,bool soft_fail = false,float freqStdDevFactor = 100.0f )
 		:
 		freqDist( 0.0f,freqStdDevFactor ),
 		soundDist( 0,unsigned int( wavFiles.size() - 1 ) )

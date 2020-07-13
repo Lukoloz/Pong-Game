@@ -2,46 +2,57 @@
 
 Paddle::Paddle(const RectF& rect_in, const Color c_in)
 	:
-	sound(L"Sounds\\arkpad.wav"),
+	sound(L"Sounds\\pong.wav"),
+	speedReset(240.0f),
 	speed(240.0f),
 	vel(0.0f, 0.0f),
+	rectReset(rect_in),
 	rect(rect_in),
 	c(c_in)
 {
 }
 
-void Paddle::Update(const Keyboard& kbd, const float dt)
+void Paddle::Reset()
+{
+	speed = speedReset;
+	rect = rectReset;
+}
+
+void Paddle::Update(const Paddle::State& state, const float dt)
 {
 	vel = { 0.0f,0.0f };
-	if (kbd.KeyIsPressed(VK_LEFT))
+	switch (state)
 	{
-		vel.x = -speed;
-		rect.left -= speed * dt;
-		rect.right -= speed * dt;
-	}
-	if (kbd.KeyIsPressed(VK_RIGHT))
-	{
-		vel.x = speed;
-		rect.left += speed * dt;
-		rect.right += speed * dt;
+	case State::UP:
+		vel.y = -speed;
+		rect.top -= speed * dt;
+		rect.bottom -= speed * dt;
+		break;
+	case State::DOWN:
+		vel.y = speed;
+		rect.top += speed * dt;
+		rect.bottom += speed * dt;
+		break;
+	default:
+		break;
 	}
 }
 
 bool Paddle::DoWallCollision(const RectF& walls)
 {
 	bool collided = false;
-	if (rect.left < walls.left)
+	if (rect.top < walls.top)
 	{
-		float delta = walls.left - rect.left;
-		rect.left += delta;
-		rect.right += delta;
+		float delta = walls.top - rect.top;
+		rect.top += delta;
+		rect.bottom += delta;
 		collided = true;
 	}
-	else if (rect.right > walls.right)
+	else if (rect.bottom > walls.bottom)
 	{
-		float delta = walls.right - rect.right;
-		rect.left += delta;
-		rect.right += delta;
+		float delta = walls.bottom - rect.bottom;
+		rect.top += delta;
+		rect.bottom += delta;
 		collided = true;
 	}
 	return collided;
@@ -82,26 +93,39 @@ bool Paddle::DoBallCollision(Ball& ball)
 
 		if (agoX < agoY)
 		{
-			ball.ChangeDirection(difVel);
+			if (vel.y < 0)
+			{
+				ball.ChangeDirectionY(0.4f);
+			}
+			else if (vel.y > 0)
+			{
+				ball.ChangeDirectionY(-0.4f);
+			}
 			ball.ReboundX();
 			ball.SetPos(Vec2(ball.GetPos().x - deltaX, ball.GetPos().y));
 		}
 		else
 		{
-			ball.ChangeDirection(difVel);
 			ball.ReboundY();
 			ball.SetPos(Vec2(ball.GetPos().x, ball.GetPos().y - deltaY));
 		}
-
-		SoundPlay();
+		ball.SpeedUp();
+		SpeedUp();
+		sound.Play();
 		return true;
 	}
 	return false;
 }
 
+void Paddle::SpeedUp()
+{
+	speed *= 1.1f;
+}
+
 void Paddle::Draw(Graphics& gfx) const
 {
 	gfx.DrawRect(rect, c);
+	/*
 	// shadows
 	gfx.DrawRect(RectF(rect.right - 4.0f, rect.top, rect.right, rect.bottom),
 		Colors::MakeRGB(c.GetR() - 20u, c.GetG() - 20u, c.GetB() - 20u));
@@ -123,9 +147,5 @@ void Paddle::Draw(Graphics& gfx) const
 				Colors::MakeRGB(c.GetR() - 20u, c.GetG() - 20u, c.GetB() - 20u));
 		}
 	}
-}
-
-void Paddle::SoundPlay()
-{
-	sound.Play();
+	*/
 }

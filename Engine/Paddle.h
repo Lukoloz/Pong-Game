@@ -10,16 +10,26 @@
 class Paddle
 {
 public:
+	enum class State
+	{
+		UP,
+		DOWN,
+		IDLE
+	};
+public:
 	Paddle(const RectF& rect_in, const Color c_in);
-	void Update(const Keyboard& kbd, const float dt);
+	void Reset();
+	void Update(const State& state, const float dt);
 	bool DoWallCollision(const RectF& walls);
 	bool DoBallCollision(Ball& ball);
+	void SpeedUp();
 	void Draw(Graphics& gfx) const;
-	void SoundPlay();
 private:
 	Sound sound;
-	const float speed;
+	const float speedReset;
+	float speed;
 	Vec2 vel;
+	const RectF rectReset;
 	RectF rect;
 	Color c;
 };
