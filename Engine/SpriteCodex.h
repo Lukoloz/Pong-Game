@@ -19,4 +19,7 @@ public:
 	static void Draw9(Graphics& gfx, Vec2& pos, Color c);
 	static void DrawAllNumbers(Graphics& gfx, Vec2& pos, Color c);
 	static void DrawOffline(Graphics& gfx, Vec2& pos, Color c);
+	static void DrawOnline(Graphics& gfx, Vec2& pos, Color c);
+	static void DrawLogo(Graphics& gfx, Vec2& pos, Color c);
+	static void DrawMadeBy(Graphics& gfx, Vec2& pos, Color c);
 };

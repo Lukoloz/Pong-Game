@@ -32,7 +32,7 @@ public:
 	void Draw(Graphics& gfx);
 private:
 	static constexpr float maxDirY = 0.8f;
-	const float rad = 7.0f;
+	const float rad = 9.0f;
 	const float speedReset;
 	float speed;
 	Color c;

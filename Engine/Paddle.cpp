@@ -2,7 +2,6 @@
 
 Paddle::Paddle(const RectF& rect_in, const Color c_in)
 	:
-	sound(L"Sounds\\pong.wav"),
 	speedReset(240.0f),
 	speed(240.0f),
 	vel(0.0f, 0.0f),
@@ -111,7 +110,6 @@ bool Paddle::DoBallCollision(Ball& ball)
 		}
 		ball.SpeedUp();
 		SpeedUp();
-		sound.Play();
 		return true;
 	}
 	return false;

@@ -358,6 +358,26 @@ void Graphics::DrawCircle(int x, int y, int radius, Color c)
 	}
 }
 
+void Graphics::DrawFrame(const RectF& rect, int thic, Color c)
+{
+	// left
+	for (int y = rect.top - thic; y < rect.bottom + thic; y++)
+		for (int x = rect.left - thic; x < rect.left; x++)
+			PutPixel(x, y, c);
+	// right
+	for (int y = rect.top - thic; y < rect.bottom + thic; y++)
+		for (int x = rect.right; x < rect.right + thic; x++)
+			PutPixel(x, y, c);
+	// top
+	for (int y = rect.top - thic; y < rect.top; y++)
+		for (int x = rect.left - thic; x < rect.right + thic; x++)
+			PutPixel(x, y, c);
+	// bottom
+	for (int y = rect.bottom; y < rect.bottom + thic; y++)
+		for (int x = rect.left - thic; x < rect.right + thic; x++)
+			PutPixel(x, y, c);
+}
+
 //////////////////////////////////////////////////
 //           Graphics Exception
 Graphics::Exception::Exception( HRESULT hr,const std::wstring& note,const wchar_t* file,unsigned int line )

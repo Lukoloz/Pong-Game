@@ -27,9 +27,18 @@
 #include "Paddle.h"
 #include "Ball.h"
 #include "FrameTimer.h"
+#include "SelectionMenu.h"
+#include "Sound.h"
 
 class Game
 {
+private:
+	enum class State
+	{
+		Menu,
+		Offline,
+		Online
+	};
 public:
 	Game( class MainWindow& wnd );
 	Game( const Game& ) = delete;
@@ -46,11 +55,15 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	State state = State::Menu;
+	SelectionMenu menu;
 	FrameTimer ft;
 	RectF walls;
 	Ball ball;
 	Paddle leftPaddle;
 	Paddle rightPaddle;
+	Sound leftSound;
+	Sound rightSound;
 	int winningScore = 7;
 	int leftScore;
 	int rightScore;

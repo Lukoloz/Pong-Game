@@ -151,6 +151,7 @@
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="RectF.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="SelectionMenu.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="SpriteCodex.h" />
@@ -168,6 +169,7 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="RectF.cpp" />
+    <ClCompile Include="SelectionMenu.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpriteCodex.cpp" />
     <ClCompile Include="Vec2.cpp" />

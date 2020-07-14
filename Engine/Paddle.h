@@ -5,7 +5,6 @@
 #include "Keyboard.h"
 #include "Graphics.h"
 #include "Ball.h"
-#include "Sound.h"
 
 class Paddle
 {
@@ -25,7 +24,6 @@ public:
 	void SpeedUp();
 	void Draw(Graphics& gfx) const;
 private:
-	Sound sound;
 	const float speedReset;
 	float speed;
 	Vec2 vel;

@@ -21,7 +21,12 @@ RectF::RectF(const Vec2 topLeft_in, const float width_in, const float height_in)
 {
 }
 
-RectF RectF::GetRectCenter(const Vec2 center_in, const float halfWidth_in, const float halfHeight_in)
+Vec2 RectF::GetCenter() const
+{
+	return Vec2((right + left) / 2, (bottom + top) / 2);
+}
+
+RectF RectF::RectFromCenter(const Vec2 center_in, const float halfWidth_in, const float halfHeight_in)
 {
 	return RectF(center_in.x - halfWidth_in, center_in.y - halfHeight_in,
 		center_in.x + halfWidth_in, center_in.y + halfHeight_in);

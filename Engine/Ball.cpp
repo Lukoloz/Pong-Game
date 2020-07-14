@@ -33,7 +33,7 @@ void Ball::Update(const float dt)
 
 RectF Ball::GetRect() const
 {
-	return RectF::GetRectCenter(pos, rad, rad);
+	return RectF::RectFromCenter(pos, rad, rad);
 }
 
 Vec2 Ball::GetPos() const
@@ -77,7 +77,7 @@ void Ball::ChangeDirectionY(float dy)
 
 Ball::BounceState Ball::DoWallCollision(const RectF& walls)
 {
-	RectF rect = RectF::GetRectCenter(pos, rad, rad);
+	RectF rect = RectF::RectFromCenter(pos, rad, rad);
 	BounceState state = BounceState::Nevermind;
 
 	if (rect.left < walls.left)
@@ -126,5 +126,6 @@ void Ball::SpeedUp()
 
 void Ball::Draw(Graphics& gfx)
 {
-	SpriteCodex::DrawBall(gfx, pos, c);
+	//SpriteCodex::DrawBall(gfx, pos, c);
+	gfx.DrawRect(GetRect(), Colors::White);
 }
