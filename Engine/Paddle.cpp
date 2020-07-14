@@ -115,6 +115,21 @@ bool Paddle::DoBallCollision(Ball& ball)
 	return false;
 }
 
+bool Paddle::IsActive() const
+{
+	return isActive;
+}
+
+void Paddle::Activate()
+{
+	isActive = true;
+}
+
+void Paddle::Deactivate()
+{
+	isActive = false;
+}
+
 void Paddle::SpeedUp()
 {
 	speed *= 1.1f;

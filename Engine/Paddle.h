@@ -21,6 +21,9 @@ public:
 	void Update(const State& state, const float dt);
 	bool DoWallCollision(const RectF& walls);
 	bool DoBallCollision(Ball& ball);
+	bool IsActive() const;
+	void Activate();
+	void Deactivate();
 	void SpeedUp();
 	void Draw(Graphics& gfx) const;
 private:
@@ -30,4 +33,5 @@ private:
 	const RectF rectReset;
 	RectF rect;
 	Color c;
+	bool isActive = true;
 };
